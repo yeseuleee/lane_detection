@@ -1,0 +1,18 @@
+<launch>
+	<arg name="cam_num" default="1"/>	
+
+    <include file="$(find odometry)/launch/odometry.launch"/>
+
+    <include file="$(find platform_static_tf)/launch/robot_setup.launch"/>
+
+	<node name="lane_detection" pkg="lane_detection" type="lane_detection" respawn="true">
+	</node>
+
+	<node name="cal_distance" pkg="cal_distance" type="cal_distance" respawn="true">
+	</node>
+    <node name="convert_cloud" pkg="convert_cloud" type="convert_cloud" respawn="true">
+	</node>
+	<include file="$(find pointcloud_to_laserscan)/launch/sample_node.launch">
+		<arg name="cam_num" value="$(arg cam_num)"/>
+	</include> 
+</launch>

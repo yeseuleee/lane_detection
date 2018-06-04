@@ -1,0 +1,1 @@
+coordinateMsg[] coordinateVec

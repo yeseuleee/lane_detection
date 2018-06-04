@@ -1,0 +1,9 @@
+<launch>
+	<!-- <node name="camera_image" pkg="camera_image" type="camera_image" output="screen">
+    <param name="CAMERA_NUM" value="1"/>
+    <param name="FREQUENCY" value="30"/>
+    <param name="debug" value="1"/>
+    <param name="CALIBRATION" value="0"/>
+    <param name="SIZEUP" value="0"/>
+  </node> -->
+</launch>

@@ -1,0 +1,108 @@
+<launch>
+	<arg name="main_camera_name" default="main"/>
+	<arg name="main_camera_num" default="1"/>
+
+	<group ns="$(arg main_camera_name)">
+
+    <node name="lane_detection" pkg="lane_detection" type="lane_detection" args="$(arg main_camera_name)" output="screen" respawn="true">
+      <param name="debug" value="0"/>
+      <param name="web_cam" value="0"/>
+      <param name="imshow" value="0"/>
+      <param name="track_bar" value="1"/>
+      <param name="timecheck" value="0"/>
+      <param name="lable" value="0"/>
+      <param name="test" value="1"/>
+
+	  <!--videofile test _ leftcam_0518-->
+	  <param name="y_hmin" value="0"/>
+	  <param name="y_hmax" value="97"/>
+	  <param name="y_smin" value="0"/>
+	  <param name="y_smax" value="115"/>
+	  <param name="y_vmin" value="0"/>
+	  <param name="y_vmax" value="255"/>
+	  <param name="w_hmin" value="0"/>
+	  <param name="w_hmax" value="179"/>
+	  <param name="w_smin" value="0"/>
+	  <param name="w_smax" value="181"/>
+	  <param name="w_vmin" value="220"/>
+	  <param name="w_vmax" value="255"/>
+ 	 <!--videofile test _ leftcam_0518-->
+
+
+<!--videofile test _ leftcam-->
+	  <!--<param name="y_hmin" value="19"/>
+	  <param name="y_hmax" value="42"/>
+	  <param name="y_smin" value="46"/>
+	  <param name="y_smax" value="151"/>
+	  <param name="y_vmin" value="0"/>
+	  <param name="y_vmax" value="182"/>
+	  <param name="w_hmin" value="10"/>
+	  <param name="w_hmax" value="167"/>
+	  <param name="w_smin" value="0"/>
+	  <param name="w_smax" value="32"/>
+	  <param name="w_vmin" value="167"/>
+	  <param name="w_vmax" value="255"/>-->
+
+
+	  <!--주행장 4시30분 (왼쪽카메라)-->
+	  <!--<param name="y_hmin" value="2"/>
+	  <param name="y_hmax" value="52"/>
+	  <param name="y_smin" value="46"/>
+	  <param name="y_smax" value="146"/>
+	  <param name="y_vmin" value="0"/>
+	  <param name="y_vmax" value="182"/>
+	  <param name="w_hmin" value="0"/>
+	  <param name="w_hmax" value="50"/>
+	  <param name="w_smin" value="0"/>
+	  <param name="w_smax" value="110"/>
+	  <param name="w_vmin" value="167"/>
+	  <param name="w_vmax" value="255"/>-->
+
+
+	  <!--??-->
+	  <!--<param name="y_hmin" value="9"/>
+	  <param name="y_hmax" value="27"/>
+	  <param name="y_smin" value="52"/>
+	  <param name="y_smax" value="146"/>
+	  <param name="y_vmin" value="0"/>
+	  <param name="y_vmax" value="180"/>
+	  <param name="w_hmin" value="5"/>
+	  <param name="w_hmax" value="42"/>
+	  <param name="w_smin" value="0"/>
+	  <param name="w_smax" value="41"/>
+	  <param name="w_vmin" value="169"/>
+	  <param name="w_vmax" value="255"/>-->
+	  
+	  <!--주행장용-->
+	  <!--<param name="y_hmin" value="17"/>
+			<param name="y_hmax" value="22"/>
+			<param name="y_smin" value="52"/>
+			<param name="y_smax" value="151"/>
+			<param name="y_vmin" value="0"/>
+			<param name="y_vmax" value="180"/>
+			<param name="w_hmin" value="0"/>
+			<param name="w_hmax" value="180"/>
+			<param name="w_smin" value="0"/>
+			<param name="w_smax" value="44"/>
+			<param name="w_vmin" value="182"/>
+			<param name="w_vmax" value="255"/>-->
+    </node>
+
+		
+		<!--<node name="cal_distance" pkg="cal_distance" type="cal_distance" args="$(arg main_camera_name)" respawn="true" output="screen">
+			<param name="debug" value="0"/>
+			<param name="cal_path" value="/home/seuleee/catkin_ws/src/autonomous2018-ssu/vision/cal_distance/data"/>
+		</node>
+
+		<node name="convert_cloud" pkg="convert_cloud" type="convert_cloud" args="$(arg main_camera_name)" respawn="true" output="screen">
+			<param name="debug" value="0"/>
+		</node>
+
+		<include file="$(find pointcloud_to_laserscan)/launch/sample_node.launch">
+			<arg name="groupName" value="$(arg main_camera_name)"/>
+		</include>
+		-->
+
+	</group>
+
+</launch>

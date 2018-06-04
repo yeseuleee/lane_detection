@@ -1,0 +1,73 @@
+<launch>
+	<arg name="left_camera_name" default="left"/>
+	<arg name="left_camera_num" default="0"/>
+
+	<arg name="right_camera_name" default="right"/>
+	<arg name="right_camera_num" default="1"/>
+
+
+
+	<group ns="$(arg left_camera_name)">
+		 <node name="camera_image" pkg="camera_image" type="camera_image" args="$(arg left_camera_name)">
+			<param name="camera_num" value="$(arg left_camera_num)"/>
+			<param name="frequency" value="30"/>
+			<param name="debug" value="0"/>
+			<param name="calibration" value="0"/>
+			<param name="sizeup" value="0"/>
+		</node>
+
+		<node name="lane_detection2" pkg="lane_detection" type="lane_detection2" args="$(arg left_camera_name)" output="screen">
+			<param name="debug" value="1"/>
+			<param name="track_bar" value="1"/>
+			<param name="lane" value="1"/>
+      		<param name="video" value="0"/>
+
+      <!-- LEFT -->
+	    <!--<param name="y_hmin" value="12"/>
+      	<param name="y_hmax" value="24"/>
+      	<param name="y_smin" value="60"/>
+	    <param name="y_smax" value="146"/>
+	    <param name="y_vmin" value="6"/>
+	    <param name="y_vmax" value="255"/>
+
+     	<param name="w_hmin" value="10"/>
+    	<param name="w_hmax" value="206"/>
+    	<param name="w_smin" value="0"/>
+    	<param name="w_smax" value="254"/>
+    	<param name="w_vmin" value="190"/>
+   	    <param name="w_vmax" value="255"/>-->
+
+      <!-- RIGHT -->
+	    <param name="y_hmin" value="12"/>
+   	    <param name="y_hmax" value="24"/>
+        <param name="y_smin" value="162"/>
+	    <param name="y_smax" value="146"/>
+	    <param name="y_vmin" value="6"/>
+	    <param name="y_vmax" value="255"/>
+
+    	<param name="w_hmin" value="10"/>
+    	<param name="w_hmax" value="206"/>
+     	<param name="w_smin" value="0"/>
+    	<param name="w_smax" value="254"/>
+    	<param name="w_vmin" value="190"/>
+   	    <param name="w_vmax" value="255"/> 
+	</node>
+
+
+		<node name="cal_distance" pkg="cal_distance" type="cal_distance" args="$(arg left_camera_name)" respawn="true" output="screen">
+			<param name="debug" value="0"/>
+			<param name="cal_path" value="/home/whiteherb/catkin_ws/src/autonomous2018-ssu/vision/cal_distance/data"/> 
+			<!--<param name="cal_path" value="/home/kite9240/catautonomous_ws/src/autonomous2018-ssu/vision/cal_distance/data"/>-->
+		</node>
+
+		<node name="convert_cloud" pkg="convert_cloud" type="convert_cloud" args="$(arg left_camera_name)" respawn="true" output="screen">
+			<param name="debug" value="0"/>
+		</node>
+
+		<include file="$(find pointcloud_to_laserscan)/launch/sample_node.launch">
+			<arg name="groupName" value="$(arg left_camera_name)"/>
+		</include>
+
+	</group>
+
+</launch>
