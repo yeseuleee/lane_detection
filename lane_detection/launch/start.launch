@@ -1,0 +1,18 @@
+<launch>
+	<arg name="cam_num" default="0"/>	
+	<arg name="frequency" default="30"/>
+	<include file="$(find camera_image)/launch/camera_image.launch">
+		<arg name="cam_num" value="$(arg cam_num)"/>
+		<arg name="frequency" value="$(arg frequency)"/>
+	</include>
+	<node name="lane_detection" pkg="lane_detection" type="lane_detection" respawn="true">
+		<rosparam file="$(find lane_detection)/cfg/lane_detection.yaml" command="load"/>
+	</node>
+	<node name="cal_distance" pkg="cal_distance" type="cal_distance" respawn="true">
+	</node>
+    <node name="convert_cloud" pkg="convert_cloud" type="convert_cloud" respawn="true">
+	</node>
+	<include file="$(find pointcloud_to_laserscan)/launch/sample_node.launch">
+		<arg name="cam_num" value="$(arg cam_num)"/>
+	</include> 
+</launch>

@@ -1,0 +1,8 @@
+#flag 조절 parameter
+DEBUG_SW: true 
+WEB_CAM: true
+IMSHOW_SW: false
+TRACK_BAR: true
+TIME_CHECK: false
+USE_LABEL_COUNT_FOR_CROSSWALK: true
+
